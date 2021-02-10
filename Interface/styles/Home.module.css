@@ -1,0 +1,13 @@
+.container {
+  display: contents;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: #67756C;
+  font-size: 120px;
+  text-align: center;
+}
+
+.title span { color: #447554; }
