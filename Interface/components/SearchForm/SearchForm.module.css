@@ -11,3 +11,15 @@
 }
 
 .title span { color: #447554; }
+
+.logo {
+  width: 56vw;
+  margin-left: 22vw;  
+}
+
+@media only screen and (max-width: 1024px) {
+  .logo {
+    width: 90vw;
+    margin-left: 5vw;
+  }
+}

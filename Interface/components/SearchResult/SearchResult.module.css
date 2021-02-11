@@ -1,0 +1,16 @@
+.logo {
+    width: 300px;
+}
+
+.header { margin-top: 24px }
+
+.header form {
+    display: flex;
+    margin-top: 24px;
+}
+
+.headerInputContainer {
+    margin-right: 8px;
+}
+
+.headerInputContainer p { font-size: 14px }

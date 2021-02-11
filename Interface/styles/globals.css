@@ -23,9 +23,19 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 
+.margin-page { margin: 0 10vw }
+
+
+.card {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 16px;
+  width: 100%;
+}
+
 /* configurar input */
 .inputContainer {
-  width: 50vw;
+  width: 56vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,10 +52,9 @@ button, input[type="submit"], input[type="reset"] {
 }
 .inputDayContainer {
   display: flex;
-  width: 50vw;
+  width: 56vw;
   margin: 0 auto;
 }
-
 
 /* configurar botão */
 .buttonSubmit {
@@ -53,4 +62,13 @@ button, input[type="submit"], input[type="reset"] {
   height: 40px;
   border-radius: 4px;
   color: #FFF;
+}
+
+@media only screen and (max-width: 1024px) {
+  .inputContainer, .inputDayContainer { width: 90vw }
+  .responsiveColumn { flex-direction: column }
+  .responsiveColumn .card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
