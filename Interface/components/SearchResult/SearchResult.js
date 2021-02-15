@@ -64,14 +64,17 @@ export default function SearchResult() {
             </div>
             <div className={`${styles.body} margin-page`}>
                 <div className="card" style={{ marginTop: 24 }}>
-                    salv
+                    <h1 className="title-card">Titulo</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, <strong>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</strong> Velit aliquet sagittis id consectetur. Est placerat in egestas erat imperdiet sed euismod nisi porta. Urna porttitor rhoncus dolor purus non enim praesent. Adipiscing enim eu turpis egestas pretium aenean. Habitant morbi tristique senectus et. Nulla pellentesque dignissim enim sit amet venenatis. Ipsum dolor sit amet consectetur. </p>
                 </div>
                 <div className="responsiveColumn" style={{ marginTop: 24, display: 'flex' }}>
                     <div className="card" style={{ marginRight: 12 }}>
-                        salv
+                        <h1 className="title-card">Titulo</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit aliquet sagittis id consectetur. Est placerat in egestas erat imperdiet sed euismod nisi porta. Urna porttitor rhoncus dolor purus non enim praesent. Adipiscing enim eu turpis egestas pretium aenean. Habitant morbi tristique senectus et. Nulla pellentesque dignissim enim sit amet venenatis. Ipsum dolor sit amet consectetur. </p>
                     </div>
                     <div className="card" style={{ marginLeft: 12 }}>
-                        salv
+                        <h1 className="title-card">Titulo</h1>
+                        <img src="./fakeGraph.png" style={{ width: '50%', margin: 'auto', display: 'flex' }}/>
                     </div>
                 </div>
             </div>

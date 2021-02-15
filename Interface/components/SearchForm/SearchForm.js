@@ -11,48 +11,49 @@ export default function SearchForm() {
   const [plantedArea, setPlantedArea] = useState();
 
   return(
-    <form className={styles.container}>
-        <img src="./logo.png" className={styles.logo}/>
-
-        <div className='inputContainer'>
-            <p className='inputTitle'>Selecione sua cidade</p>
-            <select className='inputContent' value={city} onChange={e => setCity(e.target.value)} required>
-                <option value="" selected disabled hidden>Escolha uma cidade</option>
-                {cities.map(city => {
-                return <option key={city.name} value={city.name}>{city.name}</option>
-                })}
-            </select>
-        </div>
-        
-        <div className='inputContainer'>
-            <p className='inputTitle'>Selecione sua cultura</p>
-            <select className='inputContent' value={culture} onChange={e => setCulture(e.target.value)} required>
-                <option value="" selected disabled hidden>Escolha uma cultura</option>
-                {cultures.map(culture => {
-                return <option key={culture.name} value={culture.name}>{culture.name}</option>
-                })}
-            </select>
-        </div>
-        
-        <div className='inputDayContainer'>
-            <div className='inputContainer' style={{ marginRight: 8 }}>
-                <p className='inputTitle'>Do dia</p>
-                <input className='inputContent' value={dayStart} onChange={e => setDayStart(e.target.value)} required/>
-            </div>
+    <div className={styles.containerPage}>
+        <div className={styles.containerImage}>salv</div>
+        <form className={styles.containerForm}>
             <div className='inputContainer'>
-                <p className='inputTitle'>Até o dia</p>
-                <input className='inputContent' value={dayEnd} onChange={e => setDayEnd(e.target.value)} required/>
+                <p className='inputTitle'>Selecione sua cidade</p>
+                <select className='inputContent' value={city} onChange={e => setCity(e.target.value)} required>
+                    <option value="" selected disabled hidden>Escolha uma cidade</option>
+                    {cities.map(city => {
+                        return <option key={city.name} value={city.name}>{city.name}</option>
+                    })}
+                </select>
             </div>
-        </div>
-        
-        <div className='inputContainer'>
-            <p className='inputTitle'>Área plantada em hectares</p>
-            <input className='inputContent' type="number" value={plantedArea} onChange={e => setPlantedArea(e.target.value)} required/>
-        </div>
+            
+            <div className='inputContainer'>
+                <p className='inputTitle'>Selecione sua cultura</p>
+                <select className='inputContent' value={culture} onChange={e => setCulture(e.target.value)} required>
+                    <option value="" selected disabled hidden>Escolha uma cultura</option>
+                    {cultures.map(culture => {
+                    return <option key={culture.name} value={culture.name}>{culture.name}</option>
+                    })}
+                </select>
+            </div>
+            
+            <div className='inputDayContainer'>
+                <div className='inputContainer' style={{ marginRight: 8 }}>
+                    <p className='inputTitle'>Do dia</p>
+                    <input className='inputContent' value={dayStart} onChange={e => setDayStart(e.target.value)} required/>
+                </div>
+                <div className='inputContainer' style={{ marginLeft: 0 }}>
+                    <p className='inputTitle'>Até o dia</p>
+                    <input className='inputContent' value={dayEnd} onChange={e => setDayEnd(e.target.value)} required/>
+                </div>
+            </div>
+            
+            <div className='inputContainer'>
+                <p className='inputTitle'>Área plantada em hectares</p>
+                <input className='inputContent' type="number" value={plantedArea} onChange={e => setPlantedArea(e.target.value)} required/>
+            </div>
 
-        <div className='inputContainer' >
-            <input className='buttonSubmit' type="submit" />
-        </div>
-    </form>
+            <div className='inputContainer' >
+                <input className='buttonSubmit' type="submit" />
+            </div>
+        </form>
+    </div>
   )
 };
