@@ -35,6 +35,7 @@ button, input[type="submit"], input[type="reset"] {
 
 .title-card {
   margin: 0 0 8px 0;
+  color: #2D2D2D;
 }
 
 /* configurar input */
@@ -48,6 +49,8 @@ button, input[type="submit"], input[type="reset"] {
 
 .inputTitle {
   margin-bottom: 8px;
+  font-weight: bold;
+  color: #2D2D2D;
 }
 .inputContent {
   width: 100%;

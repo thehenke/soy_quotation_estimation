@@ -12,7 +12,10 @@ export default function SearchForm() {
 
   return(
     <div className={styles.containerPage}>
-        <div className={styles.containerImage}>salv</div>
+        <div className={styles.containerImage}>
+            <img src="./logo.png" className={styles.logo}/>
+            <p className={styles.logoText}>Sua calculadora para<br /><strong>estimativa de produção agricola</strong></p>
+        </div>
         <form className={styles.containerForm}>
             <div className='inputContainer'>
                 <p className='inputTitle'>Selecione sua cidade</p>

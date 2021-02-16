@@ -1,16 +1,23 @@
 .logo {
-    width: 300px;
+    width: 64px;
 }
 
-.header { margin-top: 24px }
+.header { margin-top: 16px }
 
 .header form {
     display: flex;
-    margin-top: 24px;
+    margin-top: 16px;
 }
 
 .headerInputContainer {
     margin-right: 8px;
+    width: 100%;
 }
 
 .headerInputContainer p { font-size: 14px }
+
+.serachData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
