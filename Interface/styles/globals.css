@@ -23,16 +23,34 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 
+.margin-page { margin: 0 10vw }
+
+
+.card {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 16px;
+  width: 100%;
+}
+
+.title-card {
+  margin: 0 0 8px 0;
+  color: #2D2D2D;
+}
+
 /* configurar input */
 .inputContainer {
-  width: 50vw;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 16px auto 0 auto;
+  margin: 16px 0 0 0;
 }
+
 .inputTitle {
   margin-bottom: 8px;
+  font-weight: bold;
+  color: #2D2D2D;
 }
 .inputContent {
   width: 100%;
@@ -42,10 +60,8 @@ button, input[type="submit"], input[type="reset"] {
 }
 .inputDayContainer {
   display: flex;
-  width: 50vw;
-  margin: 0 auto;
+  width: 80%;
 }
-
 
 /* configurar botão */
 .buttonSubmit {
@@ -53,4 +69,23 @@ button, input[type="submit"], input[type="reset"] {
   height: 40px;
   border-radius: 4px;
   color: #FFF;
+}
+
+@media only screen and (max-width: 1024px) {
+  .inputContainer {
+    width: 80vw;
+    margin-left: 10vw;
+  }
+  .inputDayContainer {
+    width: 90vw;
+    margin-left: 0;
+  }
+  .inputDayContainer .inputContainer {
+    /* width: 80vw; */
+  }
+  .responsiveColumn { flex-direction: column }
+  .responsiveColumn .card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }

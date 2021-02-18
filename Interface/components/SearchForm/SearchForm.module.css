@@ -1,0 +1,42 @@
+.containerPage {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.containerImage {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerForm {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color: #67756C;
+  font-size: 120px;
+  text-align: center;
+}
+
+.title span { color: #447554; }
+
+.logo {
+  width: 40%;
+}
+
+.logoText {
+  font-size: 1.6vw;
+  margin-top: 24px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  .containerImage { display: none; }
+}
