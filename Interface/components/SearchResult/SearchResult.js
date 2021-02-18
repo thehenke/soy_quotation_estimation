@@ -80,8 +80,8 @@ export default function SearchResult() {
                             <p style={{ fontSize: 20 }}>{plantedArea} hectares</p>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'center' }}>
-                            <img src="results/40.png" style={{ width: 240 }}/>
-                            <p style={{ fontWeight: 'bold', fontSize: 80 }}><span style={{ fontSize: 240, color: '#447554', margin: '0 0 0 40px'}}>53</span>%</p>
+                            <img src="results/80.png" style={{ width: 240 }}/>
+                            <p style={{ fontWeight: 'bold', fontSize: 80 }}><span style={{ fontSize: 240, color: '#447554', margin: '0 0 0 40px'}}>87</span>%</p>
                         </div>
                     </div>
                 </div>
