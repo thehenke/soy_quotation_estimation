@@ -1,9 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS
 
 app = Flask("Capro")
+CORS(app)
 
 # função para fazer busca no banco
-def SearchCulture(city, culture, dayStart, dayEnd, area):
+def SearchCulture(city, culture, dayStart, dayEnd, plantedArea):
     # finge que faz a busca no banco
     return { "city": city }
 
@@ -25,10 +27,10 @@ def SearchCultureRequest():
     if("dayEnd" not in body):
         return Responses(400, "O campo Até o dia é obrigatório!")
 
-    if("area" not in body):
+    if("plantedArea" not in body):
         return Responses(400, "O campo Área plantada em hectares é obrigatório!")
 
-    dataSearch = SearchCulture(body["city"], body["culture"], body["dayStart"], body["dayEnd"], body["area"])
+    dataSearch = SearchCulture(body["city"], body["culture"], body["dayStart"], body["dayEnd"], body["plantedArea"])
 
     return Responses(200, "Busca realizada com sucesso", "busca", dataSearch)
 

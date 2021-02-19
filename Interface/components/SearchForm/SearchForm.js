@@ -1,14 +1,26 @@
 import { useState } from 'react';
 import styles from './SearchForm.module.css';
 
-export default function SearchForm() {
+export default function SearchForm(props) {
   const cities = [{name: 'Marília - SP'}, {name: 'Pompéia - SP'}, {name: 'Oriente - SP'}];
   const cultures = [{name: 'Milho'}, {name: 'Soja'}];
-  const [city, setCity] = useState();
-  const [culture, setCulture] = useState();
-  const [dayStart, setDayStart] = useState();
-  const [dayEnd, setDayEnd] = useState();
-  const [plantedArea, setPlantedArea] = useState();
+  const [city, setCity] = useState('');
+  const [culture, setCulture] = useState('');
+  const [dayStart, setDayStart] = useState('');
+  const [dayEnd, setDayEnd] = useState('');
+  const [plantedArea, setPlantedArea] = useState('');
+
+    function submit() {
+        let content = {}
+        content.city = city;
+        content.culture = culture;
+        content.dayStart = dayStart;
+        content.dayEnd = dayEnd;
+        content.plantedArea = plantedArea;
+        console.log(content);
+
+        props.NewSearch(content)
+    }
 
   return(
     <div className={styles.containerPage}>
@@ -16,11 +28,11 @@ export default function SearchForm() {
             <img src="./logo.png" className={styles.logo}/>
             <p className={styles.logoText}>Sua calculadora para<br /><strong>estimativa de produção agricola</strong></p>
         </div>
-        <form className={styles.containerForm}>
+        <form className={styles.containerForm} onSubmit={()=>submit()}>
             <div className='inputContainer'>
                 <p className='inputTitle'>Selecione sua cidade</p>
-                <select className='inputContent' value={city} onChange={e => setCity(e.target.value)} required>
-                    <option value="" selected disabled hidden>Escolha uma cidade</option>
+                <select className='inputContent' value={city} defaultValue="" onChange={e => setCity(e.target.value)} required>
+                    <option value="" disabled hidden>Escolha uma cidade</option>
                     {cities.map(city => {
                         return <option key={city.name} value={city.name}>{city.name}</option>
                     })}
@@ -29,10 +41,10 @@ export default function SearchForm() {
             
             <div className='inputContainer'>
                 <p className='inputTitle'>Selecione sua cultura</p>
-                <select className='inputContent' value={culture} onChange={e => setCulture(e.target.value)} required>
-                    <option value="" selected disabled hidden>Escolha uma cultura</option>
+                <select className='inputContent' value={culture} defaultValue=""  onChange={e => setCulture(e.target.value)} required>
+                    <option value="" disabled hidden>Escolha uma cultura</option>
                     {cultures.map(culture => {
-                    return <option key={culture.name} value={culture.name}>{culture.name}</option>
+                        return <option key={culture.name} value={culture.name}>{culture.name}</option>
                     })}
                 </select>
             </div>

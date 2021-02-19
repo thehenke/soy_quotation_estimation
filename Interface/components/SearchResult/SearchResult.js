@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './SearchResult.module.css';
+import api from '../../pages/api.json';
 
 export default function SearchResult() {
     const cities = [{name: 'Marília - SP'}, {name: 'Pompéia - SP'}, {name: 'Oriente - SP'}];
@@ -62,7 +63,7 @@ export default function SearchResult() {
                     </div>
                 </form>
             </div>
-            <div className={`${styles.body} margin-page`}>
+            <div className={`${styles.body} margin-page`} style={{ marginBottom: 24 }}>
                 <div className="card" style={{ marginTop: 24 }}>
                     <h1 className="title-card">Porcentagem aproveitável estimada</h1>
                     <div style={{ display: 'flex' }}>

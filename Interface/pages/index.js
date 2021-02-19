@@ -1,9 +1,31 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import Axios from 'axios';
 import SearchForm from '../components/SearchForm/SearchForm';
 import SearchResult from '../components/SearchResult/SearchResult';
+import Loading from '../components/Loading/Loading';
+import api from './api.json';
 
 export default function Home() {
+  const [homePage, setHomePage] = useState(true);
+  const [dataSearch, setDataSearch] = useState({});
+
+  function NewSearch(content) {
+    setHomePage('loading');
+
+    return Axios({
+      method: "POST",
+      url: `${api.url}/search`,
+      data: content,
+    }).then(response => {
+      console.log(response.data.busca);
+      setHomePage(false);
+      setDataSearch(response.data.busca);
+    }).catch(err => {
+      console.log(err);
+      setHomePage(true);
+    })
+  }
   
   return (
     <div>
@@ -12,8 +34,11 @@ export default function Home() {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
         <link rel="sortcut icon" href="tt.png" type="image/gif" />
       </Head>
-      <SearchForm />
-      {/* <SearchResult /> */}
+      {homePage == 'loading' ?
+        <Loading /> : homePage ?
+        <SearchForm NewSearch={NewSearch}/> :
+        <SearchResult NewSearch={NewSearch} dataSearch={dataSearch}/>
+      }
     </div>
   )
 }
