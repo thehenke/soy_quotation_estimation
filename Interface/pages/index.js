@@ -9,18 +9,24 @@ import api from './api.json';
 export default function Home() {
   const [homePage, setHomePage] = useState(true);
   const [dataSearch, setDataSearch] = useState({});
+  const [content, setContent] = useState();
 
-  function NewSearch(content) {
+  function NewSearch(contentSearch) {
+    setContent(contentSearch);
     setHomePage('loading');
 
     return Axios({
       method: "POST",
       url: `${api.url}/search`,
-      data: content,
+      data: contentSearch,
     }).then(response => {
-      console.log(response.data.busca);
-      setHomePage(false);
-      setDataSearch(response.data.busca);
+      if(response.data) {
+        setHomePage(false);
+        setDataSearch(response.data.busca);
+      } else {
+        console.log('Falha ao se comunicar com o servidor');
+        setHomePage(true);
+      }
     }).catch(err => {
       console.log(err);
       setHomePage(true);
@@ -37,7 +43,11 @@ export default function Home() {
       {homePage == 'loading' ?
         <Loading /> : homePage ?
         <SearchForm NewSearch={NewSearch}/> :
-        <SearchResult NewSearch={NewSearch} dataSearch={dataSearch}/>
+        <SearchResult
+          NewSearch={NewSearch}
+          dataSearch={dataSearch}
+          content={content}
+        />
       }
     </div>
   )

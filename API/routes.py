@@ -7,7 +7,13 @@ CORS(app)
 # função para fazer busca no banco
 def SearchCulture(city, culture, dayStart, dayEnd, plantedArea):
     # finge que faz a busca no banco
-    return { "city": city }
+    return {
+        "city": city,
+        "culture": culture,
+        "dayStart": dayStart,
+        "dayEnd": dayEnd,
+        "plantedArea": plantedArea
+    }
 
 
 # seta a rota e chama a função de buscar a cultura
