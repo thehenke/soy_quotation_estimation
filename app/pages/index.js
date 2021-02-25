@@ -14,14 +14,14 @@ export default function Home() {
   function NewSearch(contentSearch) {
     setContent(contentSearch);
     setHomePage('loading');
-
+    
     return Axios({
       method: "POST",
       url: `${api.url}/search`,
       data: contentSearch,
     }).then(response => {
       if(response.data) {
-        setHomePage(false);
+        setHomePage(false);[]
         setDataSearch(response.data.busca);
       } else {
         console.log('Falha ao se comunicar com o servidor');
