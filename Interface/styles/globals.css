@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: #E6F5EB;
+  background-color: #f1f4f1;
 }
 
 * { box-sizing: border-box; }
@@ -67,11 +67,17 @@ button, input[type="submit"], input[type="reset"] {
 
 /* configurar botão */
 .buttonSubmit {
-  background-color: #447554;
+  background-color: #4caf50;
+  transition: ease-in-out all 200ms;
   height: 40px;
   border-radius: 4px;
   color: #FFF;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  cursor: pointer;
+}
+
+.buttonSubmit:hover {
+  background-color: #2e7d32;
 }
 
 @media only screen and (max-width: 1024px) {
