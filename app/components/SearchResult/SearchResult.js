@@ -8,8 +8,8 @@ export default function SearchResult(props) {
     const [yesterday_diff, setYesterday_diff] = useState(props.content.yesterday_diff);
     const [yesterday_1, setYesterday_1] = useState(props.content.yesterday_1);
     const [last_week, setLast_week] = useState(props.content.last_week);
-    const [last_year, setLast_year] = useState(props.content.last_year);
     const [last_month, setLast_month] = useState(props.content.last_month);
+    const [last_year, setLast_year] = useState(props.content.last_year);
 
     // variasveis para manter o valor da pagina estatico até fazer outra requisição
     const yesterdayStatic = props.content.yesterday;
@@ -23,11 +23,11 @@ export default function SearchResult(props) {
     function submit() {
         let content = {}
         content.yesterday = yesterday;
-        content.yesterday_diff = yesterday_diff;
         content.yesterday_1 = yesterday_1;
+        content.yesterday_diff = yesterday - yesterday_1;
         content.last_week = last_week;
-        content.last_year = last_year;
         content.last_month = last_month;
+        content.last_year = last_year;
 
         props.NewSearch(content)
     }
@@ -35,40 +35,40 @@ export default function SearchResult(props) {
     if (props.dataSearch.result) {
         return(
             <div>
-                {console.log()}
+                {console.log(yesterday_diff)}
                 <div className={`${styles.header} margin-page`}>
                     <div onClick={() => window.location.reload()}>
                         <img src="./logo.png" className={styles.logo}/>
                     </div>
                     <form onSubmit={() => submit()}>
                         <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Valor do dia anterior</p>
+                            <p className='inputTitle'>Hoje</p>
                             <input className='inputContent' type="number" value={yesterday} onChange={e => setYesterday(e.target.value)} required/>
                         </div>
                         
                         <div className={styles.headerInputContainer}>
+                            <p className='inputTitle'>Ontem</p>
+                            <input className='inputContent' type="number" value={yesterday_1} onChange={e => setYesterday_1(e.target.value)} required/>
+                        </div>
+                        
+                        <div className={styles.headerInputContainer} style={{ display: 'none' }}>
                             <p className='inputTitle'>Valor do dia anterior</p>
                             <input className='inputContent' type="number" value={yesterday_diff} onChange={e => setYesterday_diff(e.target.value)} required/>
                         </div>
                         
                         <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Valor do dia anterior</p>
-                            <input className='inputContent' type="number" value={yesterday_1} onChange={e => setYesterday_1(e.target.value)} required/>
-                        </div>
-                        
-                        <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Valor do dia anterior</p>
+                            <p className='inputTitle'>7 dias atrás</p>
                             <input className='inputContent' type="number" value={last_week} onChange={e => setLast_week(e.target.value)} required/>
                         </div>
                         
                         <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Valor do dia anterior</p>
-                            <input className='inputContent' type="number" value={last_year} onChange={e => setLast_year(e.target.value)} required/>
+                            <p className='inputTitle'>30 dias atrás</p>
+                            <input className='inputContent' type="number" value={last_month} onChange={e => setLast_month(e.target.value)} required/>
                         </div>
                         
                         <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Valor do dia anterior</p>
-                            <input className='inputContent' type="number" value={last_month} onChange={e => setLast_month(e.target.value)} required/>
+                            <p className='inputTitle'>365 dias atrás</p>
+                            <input className='inputContent' type="number" value={last_year} onChange={e => setLast_year(e.target.value)} required/>
                         </div>
 
                         <div className={styles.headerInputContainer} style={{ marginRight: 0, width: 40 }}>
