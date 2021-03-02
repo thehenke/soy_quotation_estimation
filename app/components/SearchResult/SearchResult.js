@@ -4,72 +4,71 @@ import styles from './SearchResult.module.css';
 import Loading from '../Loading/Loading';
 
 export default function SearchResult(props) {
-    const cities = [{name: 'Marília - SP'}, {name: 'Pompéia - SP'}, {name: 'Oriente - SP'}];
-    const cultures = [{name: 'Milho'}, {name: 'Soja'}];
-    const [city, setCity] = useState(props.content.city);
-    const [culture, setCulture] = useState(props.content.culture);
-    const [dayStart, setDayStart] = useState(props.content.dayStart);
-    const [dayEnd, setDayEnd] = useState(props.content.dayEnd);
-    const [plantedArea, setPlantedArea] = useState(props.content.plantedArea);
+    const [yesterday, setYesterday] = useState(props.content.yesterday);
+    const [yesterday_diff, setYesterday_diff] = useState(props.content.yesterday_diff);
+    const [yesterday_1, setYesterday_1] = useState(props.content.yesterday_1);
+    const [last_week, setLast_week] = useState(props.content.last_week);
+    const [last_month, setLast_month] = useState(props.content.last_month);
+    const [last_year, setLast_year] = useState(props.content.last_year);
 
     // variasveis para manter o valor da pagina estatico até fazer outra requisição
-    const cityStatic = props.content.city;
-    const cultureStatic = props.content.culture;
-    const dayStartStatic = props.content.dayStart;
-    const dayEndStatic = props.content.dayEnd;
-    const plantedAreaStatic = props.content.plantedArea;
+    const yesterdayStatic = props.content.yesterday;
+    const yesterday_diffStatic = props.content.yesterday_dif;
+    const yesterday_1Static = props.content.yesterday_1;
+    const last_weekStatic = props.content.last_week;
+    const last_yearStatic = props.content.last_year;
+    const last_monthStatic = props.content.last_month;
 
     // função para enviar os dados de uma nova requisição
     function submit() {
-        let content = {};
-        content.city = city;
-        content.culture = culture;
-        content.dayStart = dayStart;
-        content.dayEnd = dayEnd;
-        content.plantedArea = plantedArea;
+        let content = {}
+        content.yesterday = yesterday;
+        content.yesterday_1 = yesterday_1;
+        content.yesterday_diff = yesterday - yesterday_1;
+        content.last_week = last_week;
+        content.last_month = last_month;
+        content.last_year = last_year;
 
-        props.NewSearch(content);
+        props.NewSearch(content)
     }
 
-    if (props.dataSearch) {
+    if (props.dataSearch.result) {
         return(
             <div>
+                {console.log(yesterday_diff)}
                 <div className={`${styles.header} margin-page`}>
                     <div onClick={() => window.location.reload()}>
                         <img src="./logo.png" className={styles.logo}/>
                     </div>
                     <form onSubmit={() => submit()}>
                         <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Cidade</p>
-                            <select className={`${styles.headerInput} inputContent`} value={city} onChange={e => setCity(e.target.value)} required>
-                                {cities.map(city => {
-                                    return <option key={city.name} value={city.name}>{city.name}</option>
-                                })}
-                            </select>
-                        </div>
-
-                        <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Cultura</p>
-                            <select className={`${styles.headerInput} inputContent`} value={culture} onChange={e => setCulture(e.target.value)} required>
-                                {cultures.map(culture => {
-                                    return <option key={culture.name} value={culture.name}>{culture.name}</option>
-                                })}
-                            </select>
-                        </div>
-            
-                        <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Do dia</p>
-                            <input className={`${styles.headerInput} inputContent`} value={dayStart} onChange={e => setDayStart(e.target.value)} required/>
-                        </div>
-
-                        <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Até o dia</p>
-                            <input className={`${styles.headerInput} inputContent`} value={dayEnd} onChange={e => setDayEnd(e.target.value)} required/>
+                            <p className='inputTitle'>Hoje</p>
+                            <input className='inputContent' type="number" value={yesterday} onChange={e => setYesterday(e.target.value)} required/>
                         </div>
                         
                         <div className={styles.headerInputContainer}>
-                            <p className='inputTitle'>Área plantada </p>
-                            <input className={`${styles.headerInput} inputContent`} type="number" value={plantedArea || ''} onChange={e => setPlantedArea(e.target.value)} required/>
+                            <p className='inputTitle'>Ontem</p>
+                            <input className='inputContent' type="number" value={yesterday_1} onChange={e => setYesterday_1(e.target.value)} required/>
+                        </div>
+                        
+                        <div className={styles.headerInputContainer} style={{ display: 'none' }}>
+                            <p className='inputTitle'>Valor do dia anterior</p>
+                            <input className='inputContent' type="number" value={yesterday_diff} onChange={e => setYesterday_diff(e.target.value)} required/>
+                        </div>
+                        
+                        <div className={styles.headerInputContainer}>
+                            <p className='inputTitle'>7 dias atrás</p>
+                            <input className='inputContent' type="number" value={last_week} onChange={e => setLast_week(e.target.value)} required/>
+                        </div>
+                        
+                        <div className={styles.headerInputContainer}>
+                            <p className='inputTitle'>30 dias atrás</p>
+                            <input className='inputContent' type="number" value={last_month} onChange={e => setLast_month(e.target.value)} required/>
+                        </div>
+                        
+                        <div className={styles.headerInputContainer}>
+                            <p className='inputTitle'>365 dias atrás</p>
+                            <input className='inputContent' type="number" value={last_year} onChange={e => setLast_year(e.target.value)} required/>
                         </div>
 
                         <div className={styles.headerInputContainer} style={{ marginRight: 0, width: 40 }}>
@@ -83,36 +82,29 @@ export default function SearchResult(props) {
                     </form>
                 </div>
                 <div className={`${styles.body} margin-page`} style={{ marginBottom: 24 }}>
-                    <div className="card" style={{ marginTop: 24 }}>
+                    <div style={{ marginTop: 24 }}>
                         <h1 className="title-card">Porcentagem aproveitável estimada</h1>
-                        <div style={{ display: 'flex' }}>
-                            <div className={styles.serachData}>
-                                <p style={{ fontSize: 14 }}>Cidade:</p>
-                                <p style={{ marginBottom: 16, fontSize: 24 }}>{cityStatic}</p>
-                                
-                                <p style={{ fontSize: 14 }}>Cultura:</p>
-                                <p style={{ marginBottom: 16, fontSize: 24 }}>{cultureStatic}</p>
-                                
-                                <p style={{ fontSize: 14 }}>Data:</p>
-                                <p style={{ marginBottom: 16, fontSize: 24 }}>de&nbsp;{dayStartStatic}<br />a&nbsp;{dayEndStatic}</p>
-                                
-                                <p style={{ fontSize: 14 }}>Área:</p>
-                                <p style={{ fontSize: 24 }}>{plantedAreaStatic} hectares</p>
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'center' }}>
-                                <img src="results/80.png" style={{ width: 240 }}/>
-                                <p style={{ fontWeight: 'bold', fontSize: 80 }}><span style={{ fontSize: 240, color: '#4caf50', margin: '0 0 0 40px'}}>87</span>%</p>
+                        <div className="card">
+                            <div style={{ display: 'flex' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'center' }}>
+                                    <img src="results/80.png" style={{ width: 240 }}/>
+                                    <p style={{ fontWeight: 'bold', fontSize: 80 }}><span style={{ fontSize: 240, color: '#4caf50', margin: '0 0 0 40px'}}>{props.dataSearch.result.toFixed(2)}</span></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="responsiveColumn" style={{ marginTop: 24, display: 'flex' }}>
-                        <div className="card" style={{ marginRight: 12 }}>
+                        <div style={{width: '100%', marginRight: 12}}>
                             <h1 className="title-card">Dia anterior</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit aliquet sagittis id consectetur. Est placerat in egestas erat imperdiet sed euismod nisi porta. Urna porttitor rhoncus dolor purus non enim praesent. Adipiscing enim eu turpis egestas pretium aenean. Habitant morbi tristique senectus et. Nulla pellentesque dignissim enim sit amet venenatis. Ipsum dolor sit amet consectetur. </p>
+                            <div className="card">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit aliquet sagittis id consectetur. Est placerat in egestas erat imperdiet sed euismod nisi porta. Urna porttitor rhoncus dolor purus non enim praesent. Adipiscing enim eu turpis egestas pretium aenean. Habitant morbi tristique senectus et. Nulla pellentesque dignissim enim sit amet venenatis. Ipsum dolor sit amet consectetur. </p>
+                            </div>
                         </div>
-                        <div className="card" style={{ marginLeft: 12 }}>
+                        <div style={{width: '100%', marginLeft: 12}}>
                             <h1 className="title-card">Próximo dia</h1>
-                            <img src="./fakeGraph.png" style={{ width: '50%', margin: 'auto', display: 'flex' }}/>
+                            <div className="card">
+                                <img src="./fakeGraph.png" style={{ width: '50%', margin: 'auto', display: 'flex' }}/>
+                            </div>
                         </div>
                     </div>
                 </div>
